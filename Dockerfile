@@ -28,9 +28,12 @@ COPY ./.env /code/.env
 RUN poetry install --no-interaction --no-ansi
 
 
-RUN pip install --no-cache-dir "pydantic>=2.5.3" "pydantic-core>=2.14.6"
+RUN pip install --no-cache-dir "langchain-qdrant==0.2.0" "qdrant-client" 
+
+RUN pip install --no-cache-dir -U pydantic spacy
 
 
 EXPOSE 8080
 
 CMD ["uvicorn", "app.server:app", "--host", "0.0.0.0", "--port", "8080"]
+
